@@ -1,0 +1,117 @@
+
+<h1>
+  Emulated Doom
+</h1>
+<body>
+  <div>
+  APS: {{frame_skip * fps}}
+  </div>
+  <div class="row game-row" >
+    <div class="col-0 col-sm-0 col-md-3">
+    </div>
+    <div class="col-12 col-sm-12 col-md-6">
+      <div *ngIf="running">
+        <canvas id="my_image" width="640" height="480"></canvas>
+      </div>
+      <div class="start-button-holder" *ngIf="!running" >
+        <button mat-button color="warn"(click)="runModel()">
+            Start
+        </button>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <h2>
+    Instructions and Settings
+  </h2>
+
+  <div class="button-panel" >
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selected">
+      <mat-button-toggle value="0" [(checked)]="left">Left: Left key / A</mat-button-toggle>
+      <mat-button-toggle value="2" [(checked)]="shoot">Shoot: Space bar</mat-button-toggle>
+      <mat-button-toggle value="1" [(checked)]="right">Right: Right key / D</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <br>
+
+  <div class="button-panel" >
+    Skip frames: 
+    <fa-icon [icon]="faAngleDoubleLeft" (click)="addFrameSkip(-1)"></fa-icon>
+    {{frame_skip}}
+    <fa-icon [icon]="faAngleDoubleRight" (click)="addFrameSkip(1)"></fa-icon>
+  </div>
+  <hr>
+
+  <h2>
+    Description
+  </h2>
+  <div class="row" >
+    <div class="col-0 col-sm-0 col-md-2">
+    </div>
+    <div class="col-12 col-sm-12 col-md-8">
+      <div>
+        The engine of this game is fully run on a neural network. The inputs (left, right and shoot) goes together with the a latent space vectors of previous frames into an recurrent neural network to predict the next latent space vector. The newly generated vector is then decoded by a convolution network to construct a 640x480 frame.
+      </div>
+      <br>
+      <div>
+        For more info check:
+      </div>
+      <a href="https://www.youtube.com/watch?v=WIN3ZIk-8K0">
+        Part 1) Encoding and decoding 
+      </a>
+      <a href="https://www.youtube.com/watch?v=WIN3ZIk-8K0">
+        Part 1) Predicting
+      </a>
+     </div>
+  </div>
+  <hr>
+
+
+  <h2>
+    Frequently pondered questions
+  </h2>
+  <div class="row" >
+    <div class="col-0 col-sm-0 col-md-2">
+    </div>
+    <div class="col-12 col-sm-12 col-md-8">
+      <label> Why? </label>
+      <br>
+        Good question
+      <br>
+      <br>
+      <label> What is the goal of the game? </label>
+      <br>
+        Goal?
+     </div>
+  </div>
+  <hr>
+</body>
+
+<!-- 
+<button mat-button color="warn" *ngIf="!running" (click)="runModel()">
+  Start
+</button>
+<button mat-button color="primary" *ngIf="running" (click)="running=false">
+  Stop!
+</button> -->
+
+<!-- <div>
+  <input type="number" [(ngModel)]="frame_skip"/>
+</div>
+ -->
+
+<!-- 
+<button mat-raised-button color="primary">Left: Left key / A</button>
+<button mat-raised-button color="primary">Shoot: Space bar</button>
+<button mat-raised-button color="primary">Right: Right key / D</button> -->
+<!-- <button >
+  Left: Left key / A
+</div>
+<div>
+  Shoot: Space bar
+</div>
+<div>
+  Right: Right key / D
+</div> -->
+<!-- <img id="my_image"/> -->
