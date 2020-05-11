@@ -4,19 +4,21 @@
 </h1>
 <body>
   <div>
-  APS: {{frame_skip * fps}}
+  Steps per second: {{(frame_skip+1) * fps}}
   </div>
-  <div class="row game-row" >
-    <div class="col-0 col-sm-0 col-md-3">
-    </div>
-    <div class="col-12 col-sm-12 col-md-6">
-      <div *ngIf="running">
-        <canvas id="my_image" width="640" height="480"></canvas>
+  <div class="game-row">
+    <div class="row" >
+      <div class="col-0 col-sm-0 col-md-3">
       </div>
-      <div class="start-button-holder" *ngIf="!running" >
-        <button mat-button color="warn"(click)="runModel()">
-            Start
-        </button>
+      <div class="col-12 col-sm-12 col-md-6">
+        <div *ngIf="running">
+          <canvas id="my_image" width="640" height="480"></canvas>
+        </div>
+        <div class="start-button-holder" *ngIf="!running" >
+          <button mat-button color="warn"(click)="runModel()">
+              Start
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -28,18 +30,30 @@
 
   <div class="button-panel" >
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selected">
-      <mat-button-toggle value="0" [(checked)]="left">Left: Left key / A</mat-button-toggle>
-      <mat-button-toggle value="2" [(checked)]="shoot">Shoot: Space bar</mat-button-toggle>
-      <mat-button-toggle value="1" [(checked)]="right">Right: Right key / D</mat-button-toggle>
+      <mat-button-toggle value="0" [(checked)]="left" (click)="onValChange(0)">Left: Left key / A</mat-button-toggle>
+      <mat-button-toggle value="2" [(checked)]="shoot" (click)="onValChange(2)">Shoot: Space bar</mat-button-toggle>
+      <mat-button-toggle value="1" [(checked)]="right" (click)="onValChange(1)">Right: Right key / D</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
   <br>
 
   <div class="button-panel" >
-    Skip frames: 
+    <span class="variable-value-label">
+      Skip frames:
+    </span>  
     <fa-icon [icon]="faAngleDoubleLeft" (click)="addFrameSkip(-1)"></fa-icon>
-    {{frame_skip}}
+    <span class="variable-value" >{{frame_skip}}</span>
     <fa-icon [icon]="faAngleDoubleRight" (click)="addFrameSkip(1)"></fa-icon>
+  </div>
+
+
+  <div class="button-panel" >
+    <span class="variable-value-label">
+      Game length: 
+    </span>
+    <fa-icon [icon]="faAngleDoubleLeft" (click)="addGameLength(-1)"></fa-icon>
+    <input class="variable-value" [(ngModel)]="game_length" type="number" />
+    <fa-icon [icon]="faAngleDoubleRight" (click)="addGameLength(1)"></fa-icon>
   </div>
   <hr>
 
@@ -51,7 +65,7 @@
     </div>
     <div class="col-12 col-sm-12 col-md-8">
       <div>
-        The engine of this game is fully run on a neural network. The inputs (left, right and shoot) goes together with the a latent space vectors of previous frames into an recurrent neural network to predict the next latent space vector. The newly generated vector is then decoded by a convolution network to construct a 640x480 frame.
+        The engine of this game is fully running on a neural network trained with deep learning. The inputs (left, right and shoot) goes together with the latent space vectors of previous frames into a recurrent neural network in order to predict the next latent space vector. The newly generated vector is then decoded by a convolution network to construct a 640x480 frame.
       </div>
       <br>
       <div>
@@ -60,13 +74,13 @@
       <a href="https://www.youtube.com/watch?v=WIN3ZIk-8K0">
         Part 1) Encoding and decoding 
       </a>
-      <a href="https://www.youtube.com/watch?v=WIN3ZIk-8K0">
-        Part 1) Predicting
+      <br/>
+      <a href="https://youtu.be/7BpJSMsLkwI">
+        Part 2) Predicting latentspace vectors
       </a>
      </div>
   </div>
   <hr>
-
 
   <h2>
     Frequently pondered questions
@@ -85,7 +99,7 @@
         Goal?
      </div>
   </div>
-  <hr>
+  <!-- <hr> -->
 </body>
 
 <!-- 

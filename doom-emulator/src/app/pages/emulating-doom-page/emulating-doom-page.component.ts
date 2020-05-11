@@ -22,6 +22,8 @@ export class EmulatingDoomPageComponent implements OnInit {
   public frame_skip = 6;
   public frame_counter = 0;
 
+  public game_length = 300;
+
   public selected = 0;
 
   public left;
@@ -38,9 +40,8 @@ export class EmulatingDoomPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // const cat = document.getElementById('cat');
-    // model.execute(tf.browser.fromPixels(cat));
-    // this.runModel();
+
+    this.currentTime = new Date().getTime()/1000;
 
     document.addEventListener('keydown', (event)=>{
       // Left arrow key or A key is right
@@ -59,14 +60,15 @@ export class EmulatingDoomPageComponent implements OnInit {
       }
       // Space bar is shooting
       else if(event.keyCode == 32) {
+        // Don't go down please
+        event.preventDefault();
+
         this.action_index=2;
         this.left = false;
         this.right = false;
         this.shoot = true;
       }
     });
-
-    this.currentTime = new Date().getTime()/1000;
   }
 
   public onValChange(value){
@@ -78,16 +80,13 @@ export class EmulatingDoomPageComponent implements OnInit {
       return;
     }
     this.running = true;
-    await this.loadModels();
-    for (let i = 0; i < 300; i++){
-      if (this.running == false){
-        break;
-      }
+    if (!this.decoderModel){
+      await this.loadModels();
+    }
+    for (let i = 0; i < this.game_length; i++){
       await this.nextFrame();
     }
     this.running = false;
-   //  setInterval(()=>{
-   // }, 500);
   }
 
   async loadModels(){
@@ -101,18 +100,18 @@ export class EmulatingDoomPageComponent implements OnInit {
 
   async nextFrame() {
 
-    this.frame_counter= this.frame_counter+1;
+    this.frame_counter = this.frame_counter+1;
 
     // Add new action
     var action_vector = [0,0,0];
     action_vector[this.action_index]=1;
-    var new_action = tf.tensor1d(action_vector);
-    console.log(action_vector);
+    var action_tensor = tf.tensor1d(action_vector);
+
     // The part to keep
     var previous_actions_part = this.currentActions.slice([0,1],[1,5]);
-    // Glue the parts together
     tf.dispose(this.currentActions);
-    this.currentActions = tf.concat([previous_actions_part, new_action.expandDims(0).expandDims(0)],1);
+    // Glue the parts together
+    this.currentActions = tf.concat([previous_actions_part, action_tensor.expandDims(0).expandDims(0)],1);
 
     // Predict the next encoding
     var next_encodings = this.extrapolationModel.predict([this.currentEncodings, this.currentActions]);
@@ -134,7 +133,7 @@ export class EmulatingDoomPageComponent implements OnInit {
       const canvas: any = document.getElementById("my_image");
       const ctx = canvas.getContext('2d');
       ctx.putImageData(idata, 0, 0, 0, 0, 640, 480);
-      tf.dispose(image);
+      tf.dispose(outputs);
 
       // Update FPS counter
       var newTime = new Date().getTime()/1000;
@@ -145,6 +144,18 @@ export class EmulatingDoomPageComponent implements OnInit {
 
   public addFrameSkip(value: number): void{
     this.frame_skip+=value;
+    if (this.frame_skip < 0){
+      this.frame_skip = 0;
+    }
   }
+
+  public addGameLength(value: number): void{
+    this.game_length+=value;
+    if (this.game_length < 0){
+      this.game_length = 0;
+    }
+  }
+
+
 
 }
