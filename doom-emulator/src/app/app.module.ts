@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProjectsHomePageComponent } from './pages/projects-home-page/projects-home-page.component';
 import { DoomSlidersPageComponent } from './pages/doom-sliders-page/doom-sliders-page.component';
+import { NotMyStarterSixPageComponent } from './pages/not-my-starter-six-page/not-my-starter-six-page.component';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
@@ -41,7 +42,8 @@ const cookieConfig:NgcCookieConsentConfig = {
     EmulatingDoomPageComponent,
     HomePageComponent,
     ProjectsHomePageComponent,
-    DoomSlidersPageComponent
+    DoomSlidersPageComponent,
+    NotMyStarterSixPageComponent
   ],
   imports: [
     MatButtonModule,
