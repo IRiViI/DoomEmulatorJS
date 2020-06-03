@@ -1,0 +1,68 @@
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        <input class="title" [(ngModel)]="notPokemon.name" placeholder="Not-Pokemon name">
+        <!-- <button mat-button (click)="refresh.emit()">Randomize</button> -->
+      </mat-card-title>
+      <!-- <mat-card-subtitle>{{notPokemon.encodedGeneratorValue}}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6" >
+              <canvas #myImage width="196" height="196"></canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+              <img class="redesign-image" #redesignImage width="192" height="192"/>
+            </div>
+          </div>
+          <input #imageInput type="file" hidden="true" class="upload-button" (change)="selectImage($event)" accept="image/x-png,image/gif,image/jpeg">
+          <button mat-flat-button color="primary" (click)="imageInput.click()">Upload your redesign</button>
+
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+          <div>
+          <mat-form-field>
+            <mat-label>Type 1</mat-label>
+            <mat-select  (selectionChange)="notPokemon.type1=$event.value">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Type 2</mat-label>
+            <mat-select  (selectionChange)="notPokemon.type2=$event.value">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Type 3</mat-label>
+            <mat-select  (selectionChange)="notPokemon.type3=$event.value">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    </mat-card-content>
+    <mat-card-content>
+    <textarea class="description" [(ngModel)]="notPokemon.description" placeholder="Description"></textarea>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="onSubmit()"> Submit </button>
+    </mat-card-actions>
+  </mat-card>

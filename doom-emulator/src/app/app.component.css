@@ -1,0 +1,10 @@
+header{
+	height:65px;
+	background-color:black;
+}
+mat-toolbar{
+
+}
+body{
+	height:calc( 100% - 65px);
+}

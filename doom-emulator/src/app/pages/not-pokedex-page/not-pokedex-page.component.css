@@ -1,0 +1,73 @@
+
+h1 {
+	/*margin-top: 30px;*/
+	/*width: calc(100% - 50px);*/
+	text-align:center;
+	background-color: red;
+	color: black;
+}
+h2 {
+	font-family: "Pokemon Solid";
+	/*text-align:center;*/
+}
+ .bit8-style{
+	font-family: "8-bit";
+ }
+
+.pokemon-style{
+	font-family: "Pokemon Solid";
+	font-size:30px;
+}
+.middle-part{
+	background-color: black;
+	height: calc(100vh - 150px);
+  overflow-y: scroll;
+}
+.side-part{
+	/*background-color: red;*/
+}
+html, body{
+	background-color: red;
+	font-family: "8-bit";
+	color: white;
+}
+body, {
+}
+html{
+  overflow: hidden;
+}
+
+.poke-card{
+	height: 500px;
+	width:1000px;
+	display:block;
+}
+
+.yay {
+	color: darkgreen;
+}
+
+.neey {
+	color: darkred;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkred;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

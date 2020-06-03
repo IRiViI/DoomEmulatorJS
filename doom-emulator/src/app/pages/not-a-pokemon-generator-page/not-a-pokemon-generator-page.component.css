@@ -1,6 +1,7 @@
 .game-row{
 	background-color: black;
 	width:100%;
+	min-height: 400px;
 	text-align:center;
 }
 .start-button-holder{
@@ -45,4 +46,47 @@ input[type=number] {
 	width:120px;
 	display: inline-block;
 
+}
+.redraw-button{
+	min-width:calc(100% - 2 * 40px);
+}
+.side-button{
+	width:40px;
+}
+
+.pokemon-style{
+	font-family: "Pokemon Solid";
+	font-size:30px;
+}
+
+h2{
+	font-family: "8-bit";
+	color:#999999;
+}
+.starter:hover{
+	border-color: gold;
+	border-width: 5px;
+	border-style: solid;
+}
+.starter{
+	padding: 5px;
+	border-color: black;
+	border-width: 5px;
+	border-style: solid;
+}
+
+.bit8{
+	font-family: "8-bit";
+	color:white;
+ }
+
+.text-input {
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+	font-family: "Pokemon Solid";
+	color:white;
 }

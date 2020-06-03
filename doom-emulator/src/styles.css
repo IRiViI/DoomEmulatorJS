@@ -10,3 +10,17 @@ html,body
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+@font-face {
+font-family: 'Pokemon Solid';
+src: url('assets/fonts/pokemon/Pokemon Solid.ttf')  format('truetype');
+}
+
+@font-face {
+font-family: 'Pokemon Hollow';
+src: url('assets/fonts/pokemon/Pokemon Hollow.ttf')  format('truetype');
+}
+
+@font-face {
+font-family: '8-bit';
+src: url('assets/fonts/8bit/8-BIT WONDER.TTF')  format('truetype');
+}

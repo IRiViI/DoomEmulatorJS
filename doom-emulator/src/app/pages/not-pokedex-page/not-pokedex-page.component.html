@@ -1,0 +1,54 @@
+<html>
+  <header>
+    <h1 class="bit8-style">
+      Not-Pokedex
+    </h1>
+  </header>
+  <body>
+    <div class="row" >
+      <div class="col-0 col-sm-1 col-md-1 side-part">
+      </div>
+      <div class="col-12 col-sm-10 col-md-10 col-lg-10 middle-part">
+        <div class="row" >
+          <div *ngFor="let notPokemon of notPokemons" class="col-12 col-sm-12 col-ml-12 col-lg-6">
+            <h2>{{notPokemon.name}}</h2>
+            <div class="row" >
+              <div class="col-12 col-sm-12 col-md-6">
+                <img src={{notPokemon.src}} width="124" height="124"/>
+                <img *ngIf="notPokemon.redesignSrc" src={{notPokemon.redesignSrc}} width="124" height="124"/>
+                <hr/>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6">
+                Types: 
+                <span *ngIf="notPokemon.type1"><br/>{{notPokemon.type1}}</span>
+                <span *ngIf="notPokemon.type2">,<br/>{{notPokemon.type2}}</span>
+                <span *ngIf="notPokemon.type3">,<br/>{{notPokemon.type3}}</span>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-12 col-sm-12 col-lg-8 col-lg-9">
+                <p>{{notPokemon.description}}</p>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                Found by: 
+                <br/>
+                {{notPokemon.trainerName}}
+              </div>
+            </div>
+            <div class="col-12">
+              <button mat-button [ngClass]="{'yay' : notPokemon.isLiked}" (click)="onLike(notPokemon)">
+                <fa-icon [icon]="faThumbsUp"></fa-icon> Like
+              </button> 
+              <button mat-button [ngClass]="{'neey' : notPokemon.isReported}" (click)="onReport(notPokemon)">
+                <fa-icon [icon]="faSkull"></fa-icon> Report
+              </button>
+            </div>
+            <hr style="background-color:gray"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-0 col-sm-1 col-md-3 side-part">
+      </div>
+    </div>
+  </body>
+</html>

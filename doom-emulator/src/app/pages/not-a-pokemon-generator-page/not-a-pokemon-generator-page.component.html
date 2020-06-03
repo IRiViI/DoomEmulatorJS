@@ -1,0 +1,208 @@
+  <h1>
+    This is a <span class="pokemon-style">Not-Pokemon</span> generator
+  </h1>
+<body>
+  <div class="game-row">
+
+    <div *ngIf="!trainerName">
+      <h2>
+        Welcome
+      </h2>
+      <hr/>
+      <div class="row" >
+        <div class="col-0 col-sm-0 col-md-3">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+          <span class="bit8">
+            Hello there, 
+            <hr/>
+            Welcome to the world of <span class="pokemon-style">Not-Pokemon!</span>
+            <hr/>
+            My name is professor PokeGAN-V0
+            <hr/>
+            I generate not-pokemons as a profession.
+            <hr/>
+            First, what is your name?
+            <hr/>
+            <input class="text" [(ngModel)]="newTrainerName" placeholder="Nash">
+            <hr/>
+            Read the terms of conditions at the bottom of this page.
+            <hr/>
+            <mat-checkbox class="bit8" (change)="readConditionsChange($event)"> I have read the terms of conditions</mat-checkbox>
+            <hr/>
+            <button (click)="setTrainerName(newTrainerName)"> Continue </button>
+            <hr/>
+          </span>
+      </div>
+    </div>
+
+    </div>
+
+    <div [hidden]="!(!selectedNotPokemon && trainerName)">
+      <h2>
+        Choose your starter
+      </h2>
+      <hr/>
+      <div class="row" >
+        <div class="col-0 col-sm-0 col-md-1">
+        </div>
+        <div class="col-12 col-sm-12 col-md-10">
+          <canvas class="starter" id="my_image_0" width="192" height="196" (click)="selectNotPokemon(0)"></canvas>
+          <canvas class="starter" id="my_image_1" width="192" height="196" (click)="selectNotPokemon(1)"></canvas>
+          <canvas class="starter" id="my_image_2" width="192" height="196" (click)="selectNotPokemon(2)"></canvas>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-5">
+        </div>
+        <div class="col-2">
+          <mat-button-toggle class="side-button" (click)="searchPokemonValues(3)">
+            <fa-icon [icon]="faCaretLeft"></fa-icon>
+          </mat-button-toggle>
+          <mat-button-toggle class="redraw-button" (click)="redraw()">
+            Re-generate
+          </mat-button-toggle>
+          <mat-button-toggle class="side-button" (click)="searchPokemonValues(-3)">
+            <fa-icon [icon]="faCaretRight"></fa-icon>
+          </mat-button-toggle>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedNotPokemon && trainerName && !done">
+      <h2>
+        Perfectionize your starter
+      </h2>
+      <hr/>
+      <div class="row" >
+        <div class="col-0 col-sm-1 col-md-3">
+        </div>
+        <div class="col-0 col-sm-10 col-md-6">
+          <app-pokemon-card [notPokemon]="selectedNotPokemon" (submit)="onSubmit()"></app-pokemon-card>
+          <hr/>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedNotPokemon && trainerName && done">
+      <h2>
+        Submitted =)
+      </h2>
+      <hr/>
+      <div class="row" >
+
+        <div class="col-0 col-sm-0 col-md-3">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+          <button color="primary" (click)="restart()">Find another one</button>
+
+          <a routerLink="/projects/not-pokedex">
+            <button color="primary" >Go to Not-Pokedex</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+
+
+
+
+
+  <hr/>
+  <h2>
+    Instructions and Settings
+  </h2>
+  <div class="row" >
+    <div class="col-0 col-sm-0 col-md-2">
+    </div>
+    <div class="col-12 col-sm-12 col-md-8">
+      <div>
+        <p>
+          Help professor PokeGAN-V0 in the process of generate Not-Pokemons. You can even (optionally) add your redesign of the Not-Pokemon!
+          <br/>
+          <br/>
+          0) 
+          <br/>
+          - Give professor PokeGAN-V0 your name.
+          <br/>
+          - Read the terms of conditions and check the corresponding checkbox.
+          <br/>
+          <br/>
+          1) 
+          <br/>
+          - Choice a Not-Pokemon.
+          <br/>
+          - Optional: Don't like any of them? Re-generate Not-Pokemons.
+          <br/>
+          <br/>
+          2) 
+          <br/>
+          - Give your Not-Pokemon a name.
+          <br/>
+          - Assign types to your found Not-Pokemon.
+          <br/>
+          - Make a fitting description
+          <br/>
+          - Optional: Upload a redesign of the Not-Pokemon
+          <br/>
+          <br/>
+          3) 
+          <br/>
+          - Submit your finding
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <h2>
+    Description
+  </h2>
+  <div class="row" >
+    <div class="col-0 col-sm-0 col-md-2">
+    </div>
+    <div class="col-12 col-sm-12 col-md-8">
+      <p>
+        These images are generated using a generative adversarial networks (GAN).
+        <br/>
+        For more info, checkout the 
+        <a href="https://youtu.be/P4J45rGY3Gc">
+          video
+        </a>
+        
+      </p>
+     </div>
+  </div>
+  <hr>
+
+  <h2>
+    Terms of conditions
+  </h2>
+  <div class="row" >
+    <div class="col-0 col-sm-0 col-md-2">
+    </div>
+    <div class="col-12 col-sm-12 col-md-8">
+      <p>
+        <br/>
+        Don't upload content that contains:
+        <br/>
+        - Racial language
+        <br/>
+        - Highly sexual content*
+        <br/>
+        - Very violent material*
+        <br/>
+        - No illegal content
+        <br/>
+        <br/>
+        Perform two situps after every submission.
+        <br/>
+        <br/>
+        *Mid forms of sexual and violent content are allowed. So where is the line? I think you know where the line is...
+      </p>
+     </div>
+  </div>
+  <hr>
+</body>

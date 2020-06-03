@@ -2,7 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
-import { Subscription }   from 'rxjs';
+
+import { HeaderService } from "./header/header.service";
+
+import { Subscription, Subject, Observable } from 'rxjs';
 
 declare let ga: Function;
 
@@ -12,6 +15,8 @@ declare let ga: Function;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  public isLoading = false;
 
 
 
@@ -25,7 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
-    private ccService: NgcCookieConsentService) {
+    private ccService: NgcCookieConsentService,
+    private headerService: HeaderService) {
 
     // subscribe to router events and send page views to Google Analytics
     this.router.events.subscribe(event => {
@@ -41,6 +47,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.headerService.getProgressHeaderListener()
+      .subscribe((progress)=> {
+        this.isLoading = progress.loading;
+      })
     // subscribe to cookieconsent observables to react to main events
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {

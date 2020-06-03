@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<header>
+  <mat-toolbar>
+    <button mat-button routerLink="/projects">
+      Ricks Projects
+    </button>
+  </mat-toolbar>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+</header>
+<body>
+  <router-outlet></router-outlet>
+</body>

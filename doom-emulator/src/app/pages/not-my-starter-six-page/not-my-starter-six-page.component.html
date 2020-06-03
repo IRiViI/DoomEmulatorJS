@@ -4,16 +4,17 @@
 </h1>
 <body>
   <div class="game-row">
+    <hr/>
     <div class="row" >
-      <div class="col-0 col-sm-0 col-md-3">
+      <div class="col-0 col-sm-0 col-md-2">
       </div>
-      <div class="col-12 col-sm-12 col-md-6">
-        <canvas id="my_image_0" width="196" height="196"></canvas>
-        <canvas id="my_image_1" width="196" height="196"></canvas>
-        <canvas id="my_image_2" width="196" height="196"></canvas>
-        <canvas id="my_image_3" width="196" height="196"></canvas>
-        <canvas id="my_image_4" width="196" height="196"></canvas>
-        <canvas id="my_image_5" width="196" height="196"></canvas>
+      <div class="col-0 col-sm-0 col-md-8">
+        <div class="row" >
+          <div  *ngFor="let notPokemon of notPokemons; let i = index;" class="col-12 col-sm-12 col-md-6">
+            <app-pokemon-card [notPokemon]="notPokemon" (refresh)="refreshPokemon(i)"></app-pokemon-card>
+    <hr/>
+          </div>
+        </div>
       </div>
     </div>
   </div>

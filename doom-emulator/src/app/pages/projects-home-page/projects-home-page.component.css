@@ -12,3 +12,8 @@ label{
 body{
 	width:100vw;
 }
+.mat-card-image{
+	height: 300px;
+	object-fit: cover;
+	object-position: 50% 50%;
+}
