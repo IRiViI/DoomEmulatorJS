@@ -5,6 +5,10 @@ h1 {
 }
 h2 {
 	text-align:center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	/*height:50px;*/
+	width:100%;
 }
 label{
 	font-weight: bold;
@@ -14,6 +18,19 @@ body{
 }
 .mat-card-image{
 	height: 300px;
+	max-width:100%;
 	object-fit: cover;
 	object-position: 50% 50%;
+}
+
+.item{
+
+}
+.item-odd{
+	background-color: #444;
+	color:#ddd;
+}
+.item-even{
+	background-color: #ccc;
+	color: #333;
 }
