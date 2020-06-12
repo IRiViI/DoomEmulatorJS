@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title (click)="extended=!extended">
+    Login
+  </mat-card-title>
+  <mat-card-content *ngIf="extended==true"> 
+    <form [formGroup]="options" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field >
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" required>
+      </mat-form-field>
+      <br>
+      <button mat-button typ="submit"> Submit </button>
+      <br>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

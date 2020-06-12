@@ -1,13 +1,4 @@
-header{
-	height:65px;
-	background-color:black;
-}
-mat-toolbar{
 
-}
-body{
-	height:calc( 100% - 65px);
-}
 
 ul {
 	list-style:none;
@@ -22,4 +13,14 @@ ul {
 	color: white;
 	height:100%;
 	/*font-size: 14px;*/
+}
+.filler {
+   flex: 1 1 auto;
+}
+
+.loggedIn{
+	color:green;
+}
+.auth{
+	/*color:green;*/
 }

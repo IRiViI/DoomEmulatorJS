@@ -1,7 +1,7 @@
 <html>
   <header>
     <h1 class="bit8-style">
-      Not-Pokedex
+      Not-Pokedex 
     </h1>
   </header>
   <body>
@@ -41,6 +41,9 @@
               </button> 
               <button mat-button [ngClass]="{'neey' : notPokemon.isReported}" (click)="onReport(notPokemon)">
                 <fa-icon [icon]="faSkull"></fa-icon> Report
+              </button>
+              <button mat-button *ngIf="user.isadmin" [routerLink]="['/projects/not-a-pokemon/edit',notPokemon._id]">
+                <fa-icon [icon]="faEdit"></fa-icon> Edit
               </button>
             </div>
             <hr style="background-color:gray"/>

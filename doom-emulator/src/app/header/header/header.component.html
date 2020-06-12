@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <span>
+    <button mat-button routerLink="/home">
+      Ricks Projects
+    </button>
+  </span>
+  <span class = "filler"></span>
+  <span>
+    <ul>
+      <li class="header-item">
+        <a mat-button routerLink="/auth">
+          <fa-icon [ngClass]="{
+            'loggedIn': userIsAuthenticated
+          }" [icon]="faUser"></fa-icon>
+        </a>
+      </li>
+    </ul>
+  </span>
+  </mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>

@@ -1,0 +1,9 @@
+input{
+	width:100%;
+}
+textarea{
+	width:100%;
+}
+.type{
+	width:calc(100% / 3);
+}

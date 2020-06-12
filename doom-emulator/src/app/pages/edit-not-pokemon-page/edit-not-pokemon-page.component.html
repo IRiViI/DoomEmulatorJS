@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-title>
+    Edit Pokemon card
+  </mat-card-title>
+  <mat-card-content *ngIf="notPokemonCard"> 
+    <label>Name</label>
+    <br/>
+    <input [(value)]="notPokemonCard.name">
+    <br/>
+    <label>Types</label>
+    <br/>
+    <input class="type" [(value)]="notPokemonCard.type1">
+    <input class="type" [(value)]="notPokemonCard.type2">
+    <input class="type" [(value)]="notPokemonCard.type3">
+    <br/>
+    <label>Description</label>
+    <br/>
+    <textarea [(value)]="notPokemonCard.description"></textarea>
+    <br/>
+    <label>Likes</label>
+    <br/>
+    <input type="number" [(value)]="notPokemonCard.likes">
+    <br/>
+    <label>Reports</label>
+    <br/>
+    <input type="number" [(value)]="notPokemonCard.reports">
+    <br/>
+    <label> Generatoed image</label>
+    <br/>
+    <img *ngIf="notPokemonCard.redesignSrc" src={{notPokemonCard.redesignSrc}} width="124" height="124"/>
+    <input [(value)]="notPokemonCard.redesignSrc">
+    <br/>
+    <label> Redesigned image</label>
+    <br/>
+    <img src={{notPokemonCard.src}} width="124" height="124"/>
+    <input [(value)]="notPokemonCard.src">
+    <br/>
+    <input [(value)]="notPokemonCard.trainerName">
+    <br/>
+    <label>Generator code</label>
+    <input [(value)]="notPokemonCard.encodedGeneratorValue">
+    <br/>
+    <label>ID</label>
+    <input [(value)]="notPokemonCard._id">
+    <br/>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

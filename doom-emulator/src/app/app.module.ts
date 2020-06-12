@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -12,11 +11,17 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatInputModule} from '@angular/material/input';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { AuthInterceptor } from "./auth/auth.interceptor"; 
+
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { EmulatingDoomPageComponent } from './pages/emulating-doom-page/emulating-doom-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -30,6 +35,11 @@ import { PokemonCardComponent } from './pokemons/pokemon-card/pokemon-card.compo
 import { NotAPokemonGeneratorPageComponent } from './pages/not-a-pokemon-generator-page/not-a-pokemon-generator-page.component';
 import { NotPokedexPageComponent } from './pages/not-pokedex-page/not-pokedex-page.component';
 import { TestsPageComponent } from './pages/tests-page/tests-page.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { HeaderComponent } from './header/header/header.component';
+import { AuthPageComponent } from './pages/auth-page/auth-page.component';
+import { EditNotPokemonPageComponent } from './pages/edit-not-pokemon-page/edit-not-pokemon-page.component';
 
 
 const cookieConfig:NgcCookieConsentConfig = {
@@ -61,6 +71,11 @@ const cookieConfig:NgcCookieConsentConfig = {
     NotAPokemonGeneratorPageComponent,
     NotPokedexPageComponent,
     TestsPageComponent,
+    SigninComponent,
+    SignupComponent,
+    HeaderComponent,
+    AuthPageComponent,
+    EditNotPokemonPageComponent,
   ],
   imports: [
     MatButtonModule,
@@ -79,9 +94,13 @@ const cookieConfig:NgcCookieConsentConfig = {
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatInputModule,
     NgcCookieConsentModule.forRoot(cookieConfig)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -41,6 +41,7 @@ export class PokemonsService {
         });
         this.updateLikes(pokemonCards);
         this.updateReport(pokemonCards);
+        this.pokemonCards = pokemonCards;
         return pokemonCards
       }),)
       // .pipe(map((graphs: Graph[])=>{
@@ -49,6 +50,15 @@ export class PokemonsService {
       //   return graphs
       // }))
   };
+
+  public getPokemonCardById(_id: string){
+    for (let card of this.pokemonCards){
+      if (card._id == _id){
+        return card;
+      }
+    }
+    return undefined;
+  }
 
   public createCard(pokemonCard: PokemonCard): Observable<any>{
     const formData = new FormData();

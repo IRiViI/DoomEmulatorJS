@@ -15,4 +15,6 @@ export interface PokemonCard {
   isReported?: any;
   isLiked?: any;
   _id?: string;
+  likes?: number;
+  reports?: number;
 }

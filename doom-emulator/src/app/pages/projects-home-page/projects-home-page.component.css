@@ -14,7 +14,12 @@ label{
 	font-weight: bold;
 }
 body{
-	width:100vw;
+	/*width:100vw;*/
+	height:200%;
+	overflow-y: visible;
+}
+html{
+	/*overflow-y: hidden;*/
 }
 .mat-card-image{
 	height: 300px;
@@ -33,4 +38,24 @@ body{
 .item-even{
 	background-color: #ccc;
 	color: #333;
+}
+
+.item-odd button{
+	background-color: #ddd;
+	color: #444;
+}
+
+.item-even button{
+	background-color: #333;
+	color: #ccc;
+}
+
+.item button{
+	min-width:150px;
+	text-align: left;
+}
+
+.wrapper{
+  /*background-color: #dddddd;*/
+  margin: 0;
 }
