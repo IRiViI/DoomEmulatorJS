@@ -84,6 +84,24 @@ export class PokemonsService {
 
   };
 
+  public patchRedesignImage(pokemonCard: PokemonCard){
+    const formData = new FormData();
+    formData.append("redesignImage", pokemonCard.redesignImage);
+    return this.http.patch<any>(
+        environment.apiUrl + '/pokemons/pokemonCards/' + pokemonCard._id,
+        formData
+      )
+  }
+
+  public patchImage(pokemonCard: PokemonCard){
+    const formData = new FormData();
+    formData.append("image", pokemonCard.image);
+    return this.http.patch<any>(
+        environment.apiUrl + '/pokemons/pokemonCards/' + pokemonCard._id,
+        formData
+      )
+  }
+
   // public uploadImage(): Observable<any>{
   //   let data = {};
   //   return this.http.post<any>(

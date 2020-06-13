@@ -25,16 +25,25 @@
     <br/>
     <input type="number" [(value)]="notPokemonCard.reports">
     <br/>
-    <label> Generatoed image</label>
+
+    <label> Generated image</label>
     <br/>
-    <img *ngIf="notPokemonCard.redesignSrc" src={{notPokemonCard.redesignSrc}} width="124" height="124"/>
-    <input [(value)]="notPokemonCard.redesignSrc">
-    <br/>
-    <label> Redesigned image</label>
-    <br/>
-    <img src={{notPokemonCard.src}} width="124" height="124"/>
+    <img #myImage *ngIf="notPokemonCard.src" src={{notPokemonCard.src}} width="124" height="124"/>
+    <input #myImageInput type="file" hidden="true" class="upload-button" (change)="selectImage($event)" accept="image/x-png,image/gif,image/jpeg">
+    <button mat-flat-button color="primary" (click)="myImageInput.click()">Select generated image</button>
+    <button [disabled]="!notPokemonCard.image" mat-flat-button color="primary" (click)="onUploadMyImage()">Upload</button>
     <input [(value)]="notPokemonCard.src">
     <br/>
+
+    <label> Redesigned image</label>
+    <br/>
+    <img #redesignImage src={{notPokemonCard.redesignSrc}} width="124" height="124"/>
+    <input #redesignImageInput type="file" hidden="true" class="upload-button" (change)="selectRedesignImage($event)" accept="image/x-png,image/gif,image/jpeg">
+    <button mat-flat-button color="primary" (click)="redesignImageInput.click()">Select your redesign</button>
+    <button [disabled]="!notPokemonCard.redesignImage" mat-flat-button color="primary" (click)="onUploadRedesignImage()">Upload</button>
+    <input [(value)]="notPokemonCard.redesignSrc">
+    <br/>
+
     <input [(value)]="notPokemonCard.trainerName">
     <br/>
     <label>Generator code</label>

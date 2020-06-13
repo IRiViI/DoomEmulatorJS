@@ -14,6 +14,8 @@ import { User } from "../../user/user";
 
 import { AuthService } from "../../auth/auth.service";
 
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-not-pokedex-page',
   templateUrl: './not-pokedex-page.component.html',
@@ -56,6 +58,9 @@ export class NotPokedexPageComponent implements OnInit, OnDestroy {
       .subscribe(
         (notPokemonCards) => {
           this.notPokemons = notPokemonCards;
+          if (environment.production == false){
+            console.log(notPokemonCards)
+          }
           // console.log(notPokemonCards);
         });
   }

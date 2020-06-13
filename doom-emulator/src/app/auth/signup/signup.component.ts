@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
   public options: FormGroup;
 
   // public password: FormControl = new FormControl("", [Validators.required, Validators.minLength(6)]);
-  public password: FormControl = new FormControl("testtest", [Validators.required, Validators.minLength(6)]);
+  public password: FormControl = new FormControl("", [Validators.required, Validators.minLength(6)]);
 
   public matcher = new MyErrorStateMatcher();
 
@@ -30,15 +30,10 @@ export class SignupComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.options = fb.group({
-      name: new FormControl("Rick"),
-      email: new FormControl("rckvnk@gmail.com"),
+      name: new FormControl(""),
+      email: new FormControl(""),
       password: this.password,
-      confirmPassword: new FormControl("testtest", [Validators.required]),
-
-      // name: new FormControl(""),
-      // email: new FormControl(""),
-      // password: this.password,
-      // confirmPassword: new FormControl("", [Validators.required]),
+      confirmPassword: new FormControl("", [Validators.required]),
 
     }, {validator: this.checkPasswords });
   }
