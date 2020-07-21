@@ -62,8 +62,12 @@ export class PokemonsService {
 
   public createCard(pokemonCard: PokemonCard): Observable<any>{
     const formData = new FormData();
-    formData.append("redesignImage", pokemonCard.redesignImage)
-    formData.append("image", pokemonCard.image)
+    // formData.append("redesignImage", pokemonCard.redesignImage)
+    // formData.append("image", pokemonCard.image)
+    formData.append("images", pokemonCard.image);
+    if (pokemonCard.redesignImage){
+      formData.append("images", pokemonCard.redesignImage);
+    }
     let data = {
         trainerName: pokemonCard.trainerName,
         name: pokemonCard.name,

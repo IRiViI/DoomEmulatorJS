@@ -10,6 +10,9 @@ import { NotPokedexPageComponent } from './pages/not-pokedex-page/not-pokedex-pa
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { ProjectsHomePageComponent } from './pages/projects-home-page/projects-home-page.component';
+import { RecipesHomePageComponent } from './pages/recipes-home-page/recipes-home-page.component';
+import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
+import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 // import { TestsPageComponent } from './pages/tests-page/tests-page.component';
 
 
@@ -27,6 +30,13 @@ const routes: Routes = [
       { path: 'not-a-pokemon-generator', component: NotAPokemonGeneratorPageComponent },
       { path: 'not-a-pokemon/edit/:notPokemonId', component: EditNotPokemonPageComponent },
       { path: 'not-pokedex', component: NotPokedexPageComponent },
+      { path: 'recipes', component: RecipesPageComponent ,
+      children: [
+          { path: '', redirectTo:'home', pathMatch:'full' },
+          { path: 'home', component: RecipesHomePageComponent },
+          { path: 'recipe', component: RecipePageComponent },
+        ]
+      },
     ]
   },
   // { path: 'tests', component: TestsPageComponent}

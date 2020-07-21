@@ -40,6 +40,9 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header/header.component';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { EditNotPokemonPageComponent } from './pages/edit-not-pokemon-page/edit-not-pokemon-page.component';
+import { RecipesHomePageComponent } from './pages/recipes-home-page/recipes-home-page.component';
+import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
+import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 
 
 const cookieConfig:NgcCookieConsentConfig = {
@@ -76,6 +79,9 @@ const cookieConfig:NgcCookieConsentConfig = {
     HeaderComponent,
     AuthPageComponent,
     EditNotPokemonPageComponent,
+    RecipesHomePageComponent,
+    RecipesPageComponent,
+    RecipePageComponent,
   ],
   imports: [
     MatButtonModule,
