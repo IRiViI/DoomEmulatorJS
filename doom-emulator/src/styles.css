@@ -24,3 +24,8 @@ src: url('assets/fonts/pokemon/Pokemon Hollow.ttf')  format('truetype');
 font-family: '8-bit';
 src: url('assets/fonts/8bit/8-BIT WONDER.TTF')  format('truetype');
 }
+
+@font-face {
+font-family: 'dancingScript';
+src: url('assets/fonts/dancingScript/DancingScript-VariableFont_wght.ttf')  format('truetype');
+}

@@ -1,0 +1,67 @@
+h1{
+	font-family: "dancingScript";
+	text-align: center;
+	font-size:70px;
+	height:70px;
+}
+
+.allrecipes{
+	font-family: "dancingScript";
+	color:#333;
+	font-size: 24px;
+}
+
+.recipe-title{
+	font-family: "dancingScript";
+	font-size: 40px;
+	color:#333;
+}
+
+.search-field{
+	color:#333;
+	font-style: italic;
+	margin-left: 6px;
+	width:calc(100% - 30px);
+	background-color: transparent;
+	border: none;
+	height:24px;
+
+}
+
+.search-field:focus{
+	border:none;
+	outline-color: transparent;
+	outline-style: none;
+}
+
+.search-icon{
+	width:24px;
+	font-size:24px;
+}
+
+.recipe.mat-card{
+	background-color: #b5ead7;
+	
+}
+mat-card-content{
+	color:#333;
+}
+mat-card-subtitle{
+	color:#777;
+}
+
+.description{
+	background-color:#e2f0cb;
+}
+.disclaimer{
+	background-color:#e2f0cb;
+}
+
+label{
+	font-weight: bold;
+}
+
+/*.search-bar { background-color: #222; }
+.search-bar * { color: white !important; }
+.search-bar input { border-bottom-color: white; }
+.md-errors-spacer { display:none; }*/

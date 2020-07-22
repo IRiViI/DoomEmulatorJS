@@ -1,6 +1,9 @@
 export interface Recipe {
+  id: string,
   title: string,
-  instructions: string[],
+  categories: string[],
   ingredients: string[],
+  instructions: string[],
   reviews: string[],
+  ratings: number[]
 }

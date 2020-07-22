@@ -24,7 +24,7 @@ export class RecipesService {
 
       let headers = new HttpHeaders();
       return this.externalHttpClient.get<any>(//:Recipe[]
-          "https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/data/recipes.json", 
+          "https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/data/recipes_2.json", 
         )
         .pipe(map((recipes:Recipe[]) => {
           for (let recipe of recipes){
@@ -34,4 +34,19 @@ export class RecipesService {
         }),)
 
   }
+
+  public getRecipeByIndex(index: number):Recipe{
+    return this.recipes[index];
+    // for (let recipe of this.recipes){
+    //   if (recipe.)
+    // }
+  } 
+
+  public getRecipeById(id: string):Recipe{
+    for (let recipe of this.recipes){
+      if (recipe.id == id){
+        return recipe
+      }
+    }
+  } 
 }

@@ -1,3 +1,84 @@
-<div *ngFor="let recipe of recipes">
-  {{recipe.title}}
-</div>
+<!-- NOTE: 
+  This one has nice fonts for later!
+CHeck: https://billyargel.com/ -->
+
+
+<!-- <header> -->
+<!-- </header> -->
+<body>
+  <br/>
+  <br/>
+  <h1>
+    Artificial Recipes
+  </h1>
+  <div class="row" >
+    <div class="col-0 col-sm-1 col-md-1 col-lg-1">
+    </div>
+    <div class="d-sm-none d-lg-block col-lg-2">
+      Categories
+      <div *ngFor="let category of categories">
+        <input [(ngModel)]="category.value" type="checkbox" (change)="onCheckCategory()">
+        {{category.name}}
+      </div>
+      </div>
+    <div class="col-12 col-sm-12 col-md-10 col-lg-6">
+
+
+      <mat-card class="description">
+        <mat-card-header>
+          <mat-card-title class="recipe-title">Description and disclaimer</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+          These recipes are generated using a Neural Network. The model is a fine tuned version of <a href="https://openai.com/blog/better-language-models/">GPT-2</a> using <a href="https://huggingface.co/">Hugging Face</a>. The model is trained on recipes from the website <a href="https://www.allrecipes.com/">allrecipes</a>.
+          </p>
+
+          <p>
+            These recipes are only for entertainment purposes and shouldn't be trusted to be foodsafe!
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <br/>
+      <div class="row" >
+        <div class="col-0 col-sm-1 col-md-2 col-lg-3 search-bar">
+        </div>
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 search-bar">
+          <input class="search-field" placeholder="Apple pie from scratch" #searchTerm/>
+          <fa-icon (click)="onSearch(searchTerm.value)" class="search-icon" [icon]="faSearch"></fa-icon> 
+        </div>
+      </div>
+
+      <br/>
+      <span *ngFor="let recipe of shownRecipes">
+        <mat-card routerLink="/projects/recipes/recipe" [queryParams]="{id: recipe.id}" class="recipe">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title class="recipe-title" >{{recipe.title}}</mat-card-title>
+            <mat-card-subtitle class="recipe-category" >
+              <span *ngFor="let catgeory of recipe.categories">{{catgeory}}, 
+              </span>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+          <mat-card-content>
+            <p class="recipe-description">
+              <label>
+                Top review:
+              </label>
+                {{recipe.reviews[0]}}
+            </p>
+          </mat-card-content>
+<!--           <mat-card-actions>
+            <button mat-button>Check out recipe</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions> -->
+        </mat-card>
+        <br/>
+      </span>
+    </div>
+    <div class="col-0 col-lg-2">
+      <a href="https://www.allrecipes.com/" class="allrecipes">Recipies made by humans</a>
+    </div>
+  </div>
+</body>
