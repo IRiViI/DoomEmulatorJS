@@ -24,7 +24,7 @@ export class RecipesService {
 
       let headers = new HttpHeaders();
       return this.externalHttpClient.get<any>(//:Recipe[]
-          "https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/data/recipes_2.json", 
+          "https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/data/recipes_3.json", 
         )
         .pipe(map((recipes:Recipe[]) => {
           for (let recipe of recipes){

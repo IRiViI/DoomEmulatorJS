@@ -15,6 +15,16 @@ h1{
 	font-family: "dancingScript";
 	font-size: 40px;
 	color:#333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-image{
+	width:100px;
+	height:100px;
+  display: flex;
+  justify-content: space-between;
+  float:left;
 }
 
 .search-field{
@@ -61,7 +71,14 @@ label{
 	font-weight: bold;
 }
 
+.main-image{
+	display:none;
+}
 /*.search-bar { background-color: #222; }
 .search-bar * { color: white !important; }
 .search-bar input { border-bottom-color: white; }
 .md-errors-spacer { display:none; }*/
+
+.recipe-by{
+	font-style: italic;
+}

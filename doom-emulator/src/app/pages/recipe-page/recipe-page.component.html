@@ -41,7 +41,7 @@
       <div>
         <div *ngFor="let instruction of recipe.instructions; let idx = index">
           <label>
-            Step {{idx}}
+            Step {{idx+1}}
           </label>
           <div>
             {{instruction}}
@@ -55,15 +55,23 @@
       </h2>
       <div class="row">
         <div *ngFor="let review of recipe.reviews; let idx = index" class="col-12 col-sm-6 col-md-6 col-lg-6">
-          <div class="rating">
-            <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 0}"></fa-icon> 
-            <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 1}"></fa-icon> 
-            <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 2}"></fa-icon> 
-            <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 3}"></fa-icon> 
-            <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 4}"></fa-icon> 
+          <div style="{width:100%;}">
+            <div class="review-label">
+              <label>{{robots[recipe.reviewCreatorIds[idx]].nickName}}</label>
+            </div>
+            <div class="rating" style="{width:100px;}">
+              <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 0}"></fa-icon> 
+              <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 1}"></fa-icon> 
+              <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 2}"></fa-icon> 
+              <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 3}"></fa-icon> 
+              <fa-icon [icon]="faStar" class="star" [class]="{'happy-star': recipe.ratings[idx] > 4}"></fa-icon> 
+            </div>
           </div>
-          <div class="review">
-            {{review}}
+          <div>
+            <img class="review-image" src={{robots[recipe.reviewCreatorIds[idx]].imageSrc}}/>
+            <p class="review">
+              {{review}}
+            </p>
           </div>
           <br/>
         </div>

@@ -11,10 +11,12 @@ CHeck: https://billyargel.com/ -->
   <h1>
     Artificial Recipes
   </h1>
+
+  <img src="/assets/images/recipe_image.png" class="main-image">
   <div class="row" >
     <div class="col-0 col-sm-1 col-md-1 col-lg-1">
     </div>
-    <div class="d-sm-none d-lg-block col-lg-2">
+    <div class="d-none d-lg-block col-lg-2">
       Categories
       <div *ngFor="let category of categories">
         <input [(ngModel)]="category.value" type="checkbox" (change)="onCheckCategory()">
@@ -52,9 +54,11 @@ CHeck: https://billyargel.com/ -->
       <br/>
       <span *ngFor="let recipe of shownRecipes">
         <mat-card routerLink="/projects/recipes/recipe" [queryParams]="{id: recipe.id}" class="recipe">
+          <img class="recipe-image" src={{robots[recipe.creatorId].imageSrc}}/>
           <mat-card-header>
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title class="recipe-title" >{{recipe.title}}</mat-card-title>
+            <!-- <div mat-card-avatar> -->
+              <!-- </div> -->
+            <mat-card-title class="recipe-title" >{{recipe.title}}</mat-card-title> 
             <mat-card-subtitle class="recipe-category" >
               <span *ngFor="let catgeory of recipe.categories">{{catgeory}}, 
               </span>
@@ -62,6 +66,9 @@ CHeck: https://billyargel.com/ -->
           </mat-card-header>
           <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
           <mat-card-content>
+            <p class="recipe-by">
+            By: {{robots[recipe.creatorId].nickName}}
+            </p>
             <p class="recipe-description">
               <label>
                 Top review:

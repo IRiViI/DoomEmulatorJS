@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from "../../recipes/recipes.service";
 import { Recipe } from "../../recipes/recipe";
+import { RobotsService } from "../../robots/robots.service";
+import { Robot } from "../../robots/robot";
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,14 +19,21 @@ export class RecipesHomePageComponent implements OnInit {
 
   public faSearch = faSearch;
 
+  public robots: Robot[];
+
   constructor(
-    private recipesService: RecipesService) { }
+    private recipesService: RecipesService,
+    private robotsService: RobotsService) { }
 
   ngOnInit(): void {
+
+    this.robots = this.robotsService.robots;
+
     this.recipes = this.recipesService.recipes;
     for (let recipe of this.recipes){
       this.shownRecipes.push(recipe);
     }
+    console.log(this.recipes)
     this.updateCategories();
   }
 
@@ -79,7 +88,6 @@ export class RecipesHomePageComponent implements OnInit {
           continue
         }
         if (!recipe.categories.includes(category.name)){
-          // console.log(recipe)
             match = false;
             break
         }
