@@ -81,9 +81,11 @@ export class RecipesHomePageComponent implements OnInit {
   }
 
   public onSearch(term: string){
+    this.onCheckCategory()
+    var shownRecipes = this.shownRecipes.map((recipe) => recipe);
     this.shownRecipes.splice(0,this.shownRecipes.length);
     var keys = term.split(" ").map(key => key.toLowerCase());
-    for (let recipe of this.recipes){
+    for (let recipe of shownRecipes){
       let match = true;
       let title = recipe.title.toLowerCase();
       for (let key of keys){
@@ -117,7 +119,8 @@ export class RecipesHomePageComponent implements OnInit {
     }
   }
 
-  public onRandomOne(){
+  public onRandomOne(term: string){
+    this.onSearch(term)
     var chosen = this.shownRecipes[Math.floor(Math.random() * this.shownRecipes.length)];
     this.shownRecipes.splice(0,this.shownRecipes.length);
     this.shownRecipes.push(chosen);

@@ -51,7 +51,7 @@ CHeck: https://billyargel.com/ -->
           <fa-icon (click)="onSearch(searchTerm.value)" class="search-icon" [icon]="faSearch"></fa-icon> 
         </div>
         <div class="col-0 col-sm-1 col-md-2 col-lg-3">
-          <button mat-raised-button (click)="onRandomOne()">Give me one</button>
+          <button mat-raised-button (click)="onRandomOne(searchTerm.value)">Give me one</button>
         </div>
       </div>
 
