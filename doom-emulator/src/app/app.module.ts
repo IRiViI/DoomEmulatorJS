@@ -95,7 +95,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     MatToolbarModule,
     MatProgressBarModule,
     MatChipsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
@@ -27,9 +28,23 @@ export class AppComponent implements OnInit, OnDestroy {
   private noCookieLawSubscription: Subscription;
 
   constructor(
+    private meta: Meta,
     private authService: AuthService,
     public router: Router,
     private ccService: NgcCookieConsentService) {
+
+    // this.meta.addTags([
+    //       // {name: 'description', content: 'How to use Angular 4 meta service'},
+    //       {name: 'author', content: 'talkingdotnet'},
+    //       {name: 'keywords', content: 'Angular, Meta Service'}
+    //     ]);
+        // this.meta.updateTag({ name: 'description', content: 'Test' });
+    // this.meta.addTags([
+    //   {name: 'og:author', content: 'Rick Vink'},
+    //   {name: 'og:image', content: '/assets/images/recipe_image.png'},
+    //   {name: 'og:description', content: "Artificial intelligence, Deep Learning, Machine Learning they're all very exciting techniques. But for most people, those techniques are still quite far away. So, what could one guy do with a computer and some questionable priorities when it comes to spending its time achieve? Well, let's find out and have some fun with quite advanced Artificial Intelligence!"}
+    // ]);
+        // this.meta.updateTag({ name: 'og:description', content: 'Test' });
 
     // subscribe to router events and send page views to Google Analytics
     this.router.events.subscribe(event => {

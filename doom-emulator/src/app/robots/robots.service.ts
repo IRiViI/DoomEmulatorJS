@@ -79,14 +79,14 @@ export class RobotsService {
   },
   {
     name: "GlaDOS",
-    nickName: "ScienceLover",
+    nickName: "ScienceLover86",
     id:10,
     positive: 1,
     imageSrc:"https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/robots/GlaDOS.png",
   },
   {
     name: "Marvin",
-    nickName: "Marvin",
+    nickName: "DON'TBOTHER",
     id:11,
     positive: 1,
     imageSrc:"https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/robots/Marvin.png",
@@ -114,7 +114,7 @@ export class RobotsService {
   },
   {
     name: "Sentry",
-    nickName: "ISeeYouYouSeeMe",
+    nickName: "ISeeYouYouSeeMeByeBye",
     id:15,
     positive: 1,
     imageSrc:"https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/robots/Sentry.png",
@@ -135,7 +135,7 @@ export class RobotsService {
   },
   {
     name: "Awesome-O",
-    nickName: "SweetSlimBoy",
+    nickName: "EpicSlimBoyGOD",
     id:18,
     positive: 1,
     imageSrc:"https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/robots/awesome-O.png",
@@ -149,7 +149,7 @@ export class RobotsService {
   },
   {
     name: "Hal9000",
-    nickName: "Hal9000",
+    nickName: "HAL10001100101000Dave",
     id:20,
     positive: 1,
     imageSrc:"https://ricksprojectspokegan.s3.eu-central-1.amazonaws.com/robots/hal9000.png",

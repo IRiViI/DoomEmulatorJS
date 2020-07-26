@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// import { Meta } from '@angular/platform-browser';
+
 import { RecipesService } from "../../recipes/recipes.service";
 import { Recipe } from "../../recipes/recipe";
 import { RobotsService } from "../../robots/robots.service";
@@ -22,8 +24,25 @@ export class RecipesHomePageComponent implements OnInit {
   public robots: Robot[];
 
   constructor(
+    // private meta: Meta,
     private recipesService: RecipesService,
-    private robotsService: RobotsService) { }
+    private robotsService: RobotsService) {
+    // this.meta.addTags([
+    //   { name: 'og:title', content: 'Artificial Recipes' },
+    //   { name: 'og:url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
+    //   { name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
+    //   { name: 'og:image', content: '/assets/images/recipe_image.png' },
+    //   { name: 'title', content: 'Artificial Recipes' },
+    //   { name: 'url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
+    //   { name: 'description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
+    //   { name: 'image', content: '/assets/images/recipe_image.png' },
+    // ], true);
+        // this.meta.updateTag({ name: 'description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' });
+        // this.meta.updateTag({ name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' });
+        // this.meta.updateTag({ name: 'title', content: 'Artificial Recipes' });
+        // this.meta.updateTag({ name: 'og:title', content: 'Artificial Recipes' });
+  }
+
 
   ngOnInit(): void {
 
@@ -96,6 +115,12 @@ export class RecipesHomePageComponent implements OnInit {
         this.shownRecipes.push(recipe);
       }
     }
+  }
+
+  public onRandomOne(){
+    var chosen = this.shownRecipes[Math.floor(Math.random() * this.shownRecipes.length)];
+    this.shownRecipes.splice(0,this.shownRecipes.length);
+    this.shownRecipes.push(chosen);
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
+
 import { RecipesService } from "../../recipes/recipes.service";
 import { Recipe } from "../../recipes/recipe";
 
@@ -12,7 +14,12 @@ export class RecipesPageComponent implements OnInit {
   public loaded = false;
 
   constructor(
-    private recipesService: RecipesService) { }
+    private meta: Meta,
+    private recipesService: RecipesService) { 
+
+    // this.meta.updateTag({ name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.'});
+    // this.meta.updateTag({ name: 'og:title', content: 'Artificial Recipes' });
+  }
 
   ngOnInit(): void {
 

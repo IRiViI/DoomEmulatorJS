@@ -51,6 +51,7 @@ h1{
 
 .recipe.mat-card{
 	background-color: #b5ead7;
+	cursor: pointer;
 	
 }
 mat-card-content{

@@ -3,6 +3,7 @@
 CHeck: https://billyargel.com/ -->
 
 
+
 <!-- <header> -->
 <!-- </header> -->
 <body>
@@ -12,7 +13,7 @@ CHeck: https://billyargel.com/ -->
     Artificial Recipes
   </h1>
 
-  <img src="/assets/images/recipe_image.png" class="main-image">
+  <!-- <img src="/assets/images/recipe_image.png" class="main-image"> -->
   <div class="row" >
     <div class="col-0 col-sm-1 col-md-1 col-lg-1">
     </div>
@@ -48,6 +49,9 @@ CHeck: https://billyargel.com/ -->
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 search-bar">
           <input class="search-field" placeholder="Apple pie from scratch" #searchTerm/>
           <fa-icon (click)="onSearch(searchTerm.value)" class="search-icon" [icon]="faSearch"></fa-icon> 
+        </div>
+        <div class="col-0 col-sm-1 col-md-2 col-lg-3">
+          <button mat-raised-button (click)="onRandomOne()">Give me one</button>
         </div>
       </div>
 
