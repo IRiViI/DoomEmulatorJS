@@ -1,0 +1,69 @@
+
+<div class="row">
+  <div class="col-2">
+    <div id="sidebar">
+        <div class="row">
+          <div *ngFor="let label of labels; let idx = index" 
+              class="col-6 label"
+              (click)="selectLabel(label)"
+              [ngStyle]="{
+                'border-color': colors[idx],
+                'background': colors[idx]
+              }">
+            <span [ngClass]="{
+                  selectedLabel: label==selectedLabel
+                }">
+              {{label}}
+            </span>
+          </div>
+        </div>
+        <br/>
+        <button mat-button (click)="patchContract()">
+          <fa-icon [icon]="faSave"></fa-icon>
+          Save
+        </button>
+        <br/>
+        <button mat-button (click)="patchAndNewContract()">
+          <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+          Save and next
+        </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="contract">
+  <h1> {{contract.type}}</h1>
+  <h2>{{contract.contract_type_index}} - {{contract.contract_index}} </h2>
+  <div class="row">
+    <div class="col-2 col-md-3">
+    </div>
+    <div class="col-10 col-md-8">
+      <div *ngFor="let paragraph of contract.paragraphs; let idx = index"
+        class="paragraph"
+        (click)="labelParagraph(idx)">
+        <span *ngFor="let label of contract.labels[idx]" 
+            [ngStyle]="{
+              'background': getLabelColor(label)
+            }">
+          {{label}}
+        </span>
+        {{paragraph}}
+        <hr/>
+        <!-- <br/> -->
+      </div>
+    </div>
+  </div>
+  <hr/>
+  Original Text
+  <hr/>
+  <div class="row">
+    <div class="col-1 col-md-2">
+    </div>
+
+    <div class="col-10 col-md-8">
+      <span style="white-space: pre">
+        {{contract.content}}
+      </span>
+    </div>
+  </div>
+</div>

@@ -44,6 +44,7 @@ import { EditNotPokemonPageComponent } from './pages/edit-not-pokemon-page/edit-
 import { RecipesHomePageComponent } from './pages/recipes-home-page/recipes-home-page.component';
 import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
+import { ContractPageComponent } from './pages/contract-page/contract-page.component';
 
 
 const cookieConfig:NgcCookieConsentConfig = {
@@ -83,6 +84,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     RecipesHomePageComponent,
     RecipesPageComponent,
     RecipePageComponent,
+    ContractPageComponent,
   ],
   imports: [
     MatButtonModule,

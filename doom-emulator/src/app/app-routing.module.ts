@@ -13,6 +13,7 @@ import { ProjectsHomePageComponent } from './pages/projects-home-page/projects-h
 import { RecipesHomePageComponent } from './pages/recipes-home-page/recipes-home-page.component';
 import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
+import { ContractPageComponent } from './pages/contract-page/contract-page.component';
 // import { TestsPageComponent } from './pages/tests-page/tests-page.component';
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   children: [
       { path: '', redirectTo:'home', pathMatch:'full' },
       { path: 'home', component: ProjectsHomePageComponent },
+      { path: 'contracts', component: ContractPageComponent },
       { path: 'doom', component: EmulatingDoomPageComponent },
       { path: 'doom-sliders', component: DoomSlidersPageComponent },
       // { path: 'not-my-starter-six', component: NotMyStarterSixPageComponent },
