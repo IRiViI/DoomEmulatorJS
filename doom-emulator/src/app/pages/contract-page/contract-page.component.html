@@ -1,34 +1,30 @@
 
-<div class="row">
-  <div class="col-2">
-    <div id="sidebar">
-        <div class="row">
-          <div *ngFor="let label of labels; let idx = index" 
-              class="col-6 label"
-              (click)="selectLabel(label)"
-              [ngStyle]="{
-                'border-color': colors[idx],
-                'background': colors[idx]
-              }">
-            <span [ngClass]="{
-                  selectedLabel: label==selectedLabel
-                }">
-              {{label}}
-            </span>
-          </div>
-        </div>
-        <br/>
-        <button mat-button (click)="patchContract()">
-          <fa-icon [icon]="faSave"></fa-icon>
-          Save
-        </button>
-        <br/>
-        <button mat-button (click)="patchAndNewContract()">
-          <fa-icon [icon]="faChevronCircleRight"></fa-icon>
-          Save and next
-        </button>
+<div id="sidebar">
+    <div class="row">
+      <div *ngFor="let label of labels; let idx = index" 
+          class="col-5 label"
+          (click)="selectLabel(label)"
+          [ngStyle]="{
+            'border-color': colors[idx],
+            'background': colors[idx]
+          }">
+        <span [ngClass]="{
+              selectedLabel: label==selectedLabel
+            }">
+          {{label}}
+        </span>
+      </div>
     </div>
-  </div>
+    <br/>
+    <button mat-button (click)="patchContract()">
+      <fa-icon [icon]="faSave"></fa-icon>
+      Save
+    </button>
+    <br/>
+    <button mat-button (click)="patchAndNewContract()">
+      <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+      Save and next
+    </button>
 </div>
 
 <div *ngIf="contract">
@@ -39,15 +35,26 @@
     </div>
     <div class="col-10 col-md-8">
       <div *ngFor="let paragraph of contract.paragraphs; let idx = index"
-        class="paragraph"
-        (click)="labelParagraph(idx)">
+        class="paragraph">
+        <span *ngIf="contract.labels[idx].length == 0">
+          <div *ngFor="let guess of get_predicted_labels(contract.predicted_labels[idx])" 
+              [ngStyle]="{
+                'background': getLabelColor(guess[0])
+              }"
+              class="prediction"
+              (click)="labelParagraph(idx, guess[0])">
+            {{guess[1]}}% &nbsp;{{guess[0]}}
+          </div>
+        </span>
         <span *ngFor="let label of contract.labels[idx]" 
             [ngStyle]="{
               'background': getLabelColor(label)
             }">
           {{label}}
         </span>
-        {{paragraph}}
+        <span (click)="labelParagraph(idx, selectedLabel)">
+          {{paragraph}}
+        </span>
         <hr/>
         <!-- <br/> -->
       </div>

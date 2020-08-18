@@ -5,7 +5,7 @@
 	/*padding: 5px;*/
 	/*width: 200px;*/
 	/*height: 150px;*/
-	/*margin: 1px;*/
+	margin-top: 1px;
 	/*padding: 5px;*/
 	background: #b5ead7;
 	border-color:#a5dac7;
@@ -14,7 +14,12 @@
 	-moz-box-shadow: 3px 4px 2px -2px rgba(0,0,0,0.75);
 	box-shadow: 3px 4px 2px -2px rgba(0,0,0,0.75);
 }
-
+.prediction{
+	/*height:30px;*/
+	font-size: 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 .selectedLabel{
 	font-size:20px;
 	font-weight: bold;
@@ -30,6 +35,10 @@
   position: fixed; 
   width:calc(16.6%);
   z-index: 10;
+  height:calc(100vh - 100px);
+  overflow-y: scroll;
+  width:calc(20%);
+  overflow-x: hidden;
   /*margin-left: 410px; */
 }
 

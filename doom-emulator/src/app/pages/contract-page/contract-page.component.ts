@@ -52,7 +52,7 @@ export class ContractPageComponent implements OnInit {
     function getRandomColor(value) {
       let remainder = value % 16;
       var hexValue = remainder.toString(16);
-      console.log(value)
+      // console.log(value)
       var letters = '0123456789ABCDEF';
       var color = '#';
       for (var i = 0; i < 2; i++) {
@@ -76,16 +76,15 @@ export class ContractPageComponent implements OnInit {
           color += letters[9];
         }
       }
-      console.log(color);
+      color += "44"
+      // console.log(color);
       return color;
     }
 
     this.colors.splice(0, this.colors.length); 
-    console.dir(this.colors)
     for( let i = 0; i < this.labels.length; i++){
       this.colors.push(getRandomColor(i));
     }
-    console.log(this.colors)
     this.contractsService.getRandomContract()
       .subscribe(
         (contract) => {
@@ -106,17 +105,17 @@ export class ContractPageComponent implements OnInit {
     }
   }
 
-  public labelParagraph(idx){
+  public labelParagraph(idx, label){
     var labels = this.contract.labels[idx];
-    if (!this.selectedLabel){
+    if (!label){
       labels.splice(0, labels.length); 
       return
     }
-    if (labels.includes(this.selectedLabel)){
-      labels.splice(labels.indexOf(this.selectedLabel),1); 
+    if (labels.includes(label)){
+      labels.splice(labels.indexOf(label),1); 
       return
     }
-    labels.push(this.selectedLabel);
+    labels.push(label);
   }
 
   public getLabelColor(label){
@@ -146,6 +145,40 @@ export class ContractPageComponent implements OnInit {
                 // console.log(notPokemonCards);
               });
         });
+  }
+
+  private predicted_labels = [
+    "Breach of contract",
+    "Grant clause",
+    "IP rights CLause",
+    "Identification of the parties",
+    "Non-exclusivity",
+    "Term and termination Clause",
+    "confidentiality",
+    "definition Clause",
+    "force majeure",
+    "governing law",
+    "non-transferability",
+    "obligations of the parties",
+    "price information",
+    "price/payment terms",
+    "recital clause",
+    "severabilty",
+    "terms of termination",
+    "whereas clause"
+  ]
+  public get_predicted_labels(probabilities){
+    let output = []
+    for (let i = 0; i < probabilities.length; i++){
+      let probability = probabilities[i];
+      if (probability > 0.1){
+        output.push([
+          this.predicted_labels[i],
+          Math.round(100*probability)
+        ])
+      }
+    }
+    return output
   }
 
 }

@@ -19,7 +19,7 @@ export class ContractsService {
         environment.apiUrl + '/contracts/contracts'
       )
       .pipe(map((result:any) => {
-        if (result.hasOwnProperty('labels')){
+        if (result.hasOwnProperty('labels') && result.labels.length > 0){
           return result;
         }
         result.labels = [];
