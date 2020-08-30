@@ -1,0 +1,49 @@
+
+
+<div *ngIf="contract">
+  <h1> {{contract.type}}</h1>
+  <h2>{{contract.contract_type_index}} - {{contract.contract_index}} </h2>
+  <h3> Analysis </h3>
+
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+      <div id="piechart" style="width: 100%; height: 500px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+      <label>
+        Missing elements
+      </label>
+      <div>
+        <div *ngFor="let label of missing_labels">
+          {{label}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+
+  <h3> Content </h3>
+
+  <div class="row">
+    <div class="col-2 col-md-3">
+    </div>
+    <div class="col-10 col-md-8">
+      <div *ngFor="let paragraph of contract.paragraphs; let idx = index"
+        class="paragraph"
+        [ngStyle]="{
+          'background-color': getLabelColor(get_predicted_labels(contract.predicted_labels[idx])[0][0])
+        }">
+        <span class="label"> {{get_predicted_labels(contract.predicted_labels[idx])[0][0]}} </span>
+        <span>
+          {{paragraph}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

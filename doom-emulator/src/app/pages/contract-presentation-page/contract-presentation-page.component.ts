@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractsService } from "../../contracts/contracts.service";
 
-import { faSave, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+declare const google: any;
 
 @Component({
-  selector: 'app-contract-page',
-  templateUrl: './contract-page.component.html',
-  styleUrls: ['./contract-page.component.css']
+  selector: 'app-contract-presentation-page',
+  templateUrl: './contract-presentation-page.component.html',
+  styleUrls: ['./contract-presentation-page.component.css']
 })
-export class ContractPageComponent implements OnInit {
+export class ContractPresentationPageComponent implements OnInit {
 
   public contract: any;
+  public colors = [];
+  public label_results = {};
+  public missing_labels = [];
 
   public labels = [
     "ignore",
@@ -36,22 +39,11 @@ export class ContractPageComponent implements OnInit {
     "Terms of condition clause",
     "Rights clause",
     "whereas clause"];
-    
-  public selectedLabel;
-
-  public faSave = faSave;
-  public faChevronCircleRight = faChevronCircleRight;
-
-  public colors = [
-    // "#ffb3ba",
-    // "#ffdfba",
-    // "#ffffba",
-    // "#baffc9",
-    // "#bae1ff"
-  ]
 
   constructor(
     private contractsService: ContractsService) { }
+
+
 
   ngOnInit(): void {
 
@@ -62,9 +54,52 @@ export class ContractPageComponent implements OnInit {
         (contract) => {
           this.contract = contract
           console.log(contract)
+          this.createGraph();
           // console.log(notPokemonCards);
         });
+  }
 
+  public createGraph(){
+
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(() => {
+
+      this.label_results = {}
+
+      for (let i = 0; i < this.contract.paragraphs.length; i++){
+        let label = this.get_predicted_labels(this.contract.predicted_labels[i])[0][0];
+        if (!(label in this.label_results)){
+          this.label_results[label]=0
+        }
+        this.label_results[label]++
+      }
+
+      var result = Object.keys(this.label_results).map((key)=>{ 
+        return [key, this.label_results[key]]; 
+      }); 
+      console.log([["Label", "count"]].concat(result))
+
+      var data = google.visualization.arrayToDataTable(
+        [["Label", "count"]].concat(result)
+        );
+
+      var options = {
+        title: 'Content of contract'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+
+      this.missing_labels = [];
+      for (let label of this.labels){
+        if (!(label in this.label_results)){
+          this.missing_labels.push(label);
+        }
+      }
+      console.log(this.missing_labels)
+    });
   }
 
   public setColors(){
@@ -108,56 +143,11 @@ export class ContractPageComponent implements OnInit {
     }
   }
 
-
-
-  public selectLabel(label: string){
-    if (this.selectedLabel == label){
-      this.selectedLabel = undefined;
-    } else {
-      this.selectedLabel = label;
-    }
-  }
-
-  public labelParagraph(idx, label){
-    var labels = this.contract.labels[idx];
-    if (!label){
-      labels.splice(0, labels.length); 
-      return
-    }
-    if (labels.includes(label)){
-      labels.splice(labels.indexOf(label),1); 
-      return
-    }
-    labels.push(label);
-  }
-
   public getLabelColor(label){
     var idx = this.labels.indexOf(label);
     var color = this.colors[idx];
+    // console.log(color);
     return color
-  }
-
-  public patchContract(){
-    this.contractsService.patchContract(this.contract)
-    .subscribe(
-        () => {
-          console.log("Updated")
-        });
-  }
-
-  public patchAndNewContract(){
-    this.contractsService.patchContract(this.contract)
-    .subscribe(
-        () => {
-          console.log("Updated")
-          this.contractsService.getRandomContract()
-            .subscribe(
-              (contract) => {
-                this.contract = contract
-                console.log(contract)
-                // console.log(notPokemonCards);
-              });
-        });
   }
 
   private predicted_labels = [

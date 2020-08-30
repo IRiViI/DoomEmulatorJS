@@ -14,6 +14,7 @@ import { RecipesHomePageComponent } from './pages/recipes-home-page/recipes-home
 import { RecipesPageComponent } from './pages/recipes-page/recipes-page.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { ContractPageComponent } from './pages/contract-page/contract-page.component';
+import { ContractPresentationPageComponent } from './pages/contract-presentation-page/contract-presentation-page.component';
 // import { TestsPageComponent } from './pages/tests-page/tests-page.component';
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: '', redirectTo:'home', pathMatch:'full' },
       { path: 'home', component: ProjectsHomePageComponent },
       { path: 'contracts', component: ContractPageComponent },
+      { path: 'contracts-presentation', component: ContractPresentationPageComponent },
       { path: 'doom', component: EmulatingDoomPageComponent },
       { path: 'doom-sliders', component: DoomSlidersPageComponent },
       // { path: 'not-my-starter-six', component: NotMyStarterSixPageComponent },
