@@ -1,0 +1,44 @@
+<h1> Chess Royal Game </h1>
+
+
+<div class="row">
+  <div class="col-0 col-md-3 col-sm-0">
+  </div>
+  <div class="col-12 col-md-6 col-sm-10">
+    <div>
+      Turn {{turnPlayer.name}}
+    </div>
+    <table id="chess-board" class="chess-board">
+        <tbody>
+          <tr> 
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+            <th>e</th>
+            <th>f</th>
+            <th>g</th>
+            <th>h</th>
+          </tr>
+          <tr *ngFor="let row of board; let idx=index">
+            <th>{{idx+1}}</th>
+            <td *ngFor="let location of row" 
+                [class]="{light: location.class=='light',
+                         dark: location.class=='dark',
+                         selected: selectedLocation==location}"
+                (mousedown)="selectLocation(location)"
+                (mousemove)="onMousemove($event)"
+                (mouseup)="dropLocation(location)">
+              <span *ngIf="location.piece">
+                <img class="piece" [src]="location.piece.skin" />
+              </span>
+              <!-- {{selectedLocation==location}} -->
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-md-3 col-sm-2">
+  </div>
+</div>

@@ -15,6 +15,7 @@ import { RecipesPageComponent } from './pages/recipes-page/recipes-page.componen
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { ContractPageComponent } from './pages/contract-page/contract-page.component';
 import { ContractPresentationPageComponent } from './pages/contract-presentation-page/contract-presentation-page.component';
+import { ChessGamePageComponent } from './pages/chess-game-page/chess-game-page.component';
 // import { TestsPageComponent } from './pages/tests-page/tests-page.component';
 
 
@@ -39,6 +40,13 @@ const routes: Routes = [
           { path: '', redirectTo:'home', pathMatch:'full' },
           { path: 'home', component: RecipesHomePageComponent },
           { path: 'recipe', component: RecipePageComponent },
+        ]
+      },
+      { path: 'chess', component: RecipesPageComponent ,
+      children: [
+          { path: '', redirectTo:'lobby', pathMatch:'full' },
+          { path: 'lobby', component: ChessGamePageComponent },
+          { path: 'game', component: ChessGamePageComponent },
         ]
       },
     ]

@@ -46,6 +46,7 @@ import { RecipesPageComponent } from './pages/recipes-page/recipes-page.componen
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { ContractPageComponent } from './pages/contract-page/contract-page.component';
 import { ContractPresentationPageComponent } from './pages/contract-presentation-page/contract-presentation-page.component';
+import { ChessGamePageComponent } from './pages/chess-game-page/chess-game-page.component';
 
 
 const cookieConfig:NgcCookieConsentConfig = {
@@ -87,6 +88,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     RecipePageComponent,
     ContractPageComponent,
     ContractPresentationPageComponent,
+    ChessGamePageComponent,
   ],
   imports: [
     MatButtonModule,
