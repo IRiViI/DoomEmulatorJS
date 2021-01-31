@@ -8,6 +8,8 @@ import { environment } from '../../environments/environment';
 
 import { User } from "../user/user";
 
+import { LocalstorageService } from "../localstorage/localstorage.service";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +23,7 @@ export class AuthService {
   private user: User;
 
   constructor(
+    private localStorage: LocalstorageService,
     private http: HttpClient, 
     private router: Router) { }
 
@@ -130,23 +133,23 @@ export class AuthService {
   }
 
   private _saveAuthData(token: string, expirationDate: Date, userId: string) {
-    localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("expiration", expirationDate.toISOString());
+    this.localStorage.setItem("token", token);
+    this.localStorage.setItem("userId", userId);
+    this.localStorage.setItem("expiration", expirationDate.toISOString());
   }
 
   private _clearAuthData() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("expiration");
+    this.localStorage.removeItem("token");
+    this.localStorage.removeItem("userId");
+    this.localStorage.removeItem("expiration");
   }
 
   private _getAuthData() {
-    const token = localStorage.getItem("token");
+    const token = this.localStorage.getItem("token");
     this.user = {
-      _id: localStorage.getItem("userId")
+      _id: this.localStorage.getItem("userId")
     };
-    const expirationDate = localStorage.getItem("expiration");
+    const expirationDate = this.localStorage.getItem("expiration");
     if (!token || !expirationDate) {
       return;
     }

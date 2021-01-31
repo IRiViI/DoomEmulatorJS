@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 import { Meta } from '@angular/platform-browser';
+import {BehaviorSubject} from 'rxjs';
+import {isPlatformBrowser} from '@angular/common';
 
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
@@ -17,7 +19,7 @@ declare let ga: Function;
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-
+  static isBrowser = new BehaviorSubject<boolean>(null);
 
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription: Subscription;
@@ -28,10 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private noCookieLawSubscription: Subscription;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
     private meta: Meta,
     private authService: AuthService,
     public router: Router,
     private ccService: NgcCookieConsentService) {
+
+    AppComponent.isBrowser.next(isPlatformBrowser(platformId));
 
     // this.meta.addTags([
     //       // {name: 'description', content: 'How to use Angular 4 meta service'},
@@ -49,7 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // subscribe to router events and send page views to Google Analytics
     this.router.events.subscribe(event => {
 
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd && AppComponent.isBrowser) {
         ga('set', 'page', event.urlAfterRedirects);
         ga('send', 'pageview');
 

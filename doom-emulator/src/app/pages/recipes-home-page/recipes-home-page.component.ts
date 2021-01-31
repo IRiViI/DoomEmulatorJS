@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 import { RecipesService } from "../../recipes/recipes.service";
 import { Recipe } from "../../recipes/recipe";
@@ -24,19 +24,11 @@ export class RecipesHomePageComponent implements OnInit {
   public robots: Robot[];
 
   constructor(
-    // private meta: Meta,
+    private meta: Meta,
+    private title: Title,
     private recipesService: RecipesService,
     private robotsService: RobotsService) {
-    // this.meta.addTags([
-    //   { name: 'og:title', content: 'Artificial Recipes' },
-    //   { name: 'og:url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
-    //   { name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
-    //   { name: 'og:image', content: '/assets/images/recipe_image.png' },
-    //   { name: 'title', content: 'Artificial Recipes' },
-    //   { name: 'url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
-    //   { name: 'description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
-    //   { name: 'image', content: '/assets/images/recipe_image.png' },
-    // ], true);
+    
         // this.meta.updateTag({ name: 'description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' });
         // this.meta.updateTag({ name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' });
         // this.meta.updateTag({ name: 'title', content: 'Artificial Recipes' });
@@ -45,6 +37,21 @@ export class RecipesHomePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.meta.addTags([
+      { name: 'og:title', content: 'Artificial Recipes' },
+      { name: 'og:url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
+      { name: 'og:description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
+      { name: 'og:image', content: '/assets/images/recipe_image.png' },
+      { name: 'title', content: 'Artificial Recipes' },
+      { name: 'url', content: 'https://www.ricksprojects.com/projects/recipes/home' },
+      { name: 'description', content: 'These recipes are generated using a Neural Network. The model is a fine tuned version of GTP-2.' },
+      { name: 'image', content: '/assets/images/recipe_image.png' },
+    ], true);
+
+    this.title.setTitle("AI recipes");
+
+    this.meta.updateTag({name: "og:title", content:"Testing og title"});
 
     this.robots = this.robotsService.robots;
 
