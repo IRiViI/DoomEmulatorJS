@@ -59,6 +59,8 @@ export class ChessGamePageComponent implements OnInit {
 
   public localPlayer = undefined;
 
+  public gameRunning: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -138,10 +140,19 @@ export class ChessGamePageComponent implements OnInit {
 
   public selectLocation(location){
     // Check if it is players turn
-    // if (this.localPlayer != this.turnPlayer ){
-    //   return;
-    // }
+    if (this.localPlayer != this.turnPlayer ){
+      return;
+    }
     this.selectedLocation = location;
+  }
+
+  private switchPlayerTurn(){
+    for (let player in this.players){
+      if (player != this.turnPlayer){
+        this.turnPlayer = player;
+        break
+      }
+    }
   }
 
   public dropLocation(location){
@@ -155,16 +166,23 @@ export class ChessGamePageComponent implements OnInit {
     var piece = this.selectedLocation.piece;
     var targetPiece = location.piece;
 
+    // Check if it's a legal move
     var validMove = this.checkMovement(piece, targetPiece, startPosition, endPosition);
     if (validMove == false){
       this.selectedLocation = undefined;
       return
     }
 
+    var killedPiece = location.piece;
     location.piece = this.selectedLocation.piece;
     this.selectedLocation.piece = undefined;
     piece.moved = true;
     this.selectedLocation = undefined;
+    // Check if you won
+    if (killedPiece && killedPiece.name == "king"){
+      this.gameRunning = false;
+      alert("You won!")
+    }
   }
 
   public onMousemove(event){
@@ -185,12 +203,81 @@ export class ChessGamePageComponent implements OnInit {
     if (piece.name=="rook"){
       return this.isLegalRookMove(piece, targetPiece, startPosition, endPosition);
     }
+    // Check horse movements
+    if (piece.name=="knight"){
+      return this.isLegalKnightMove(piece, targetPiece, startPosition, endPosition);
+    }
+    // Check pedo movements
+    if (piece.name=="bishop"){
+      return this.isLegalBishopMove(piece, targetPiece, startPosition, endPosition);
+    }
+    // Check dragqueen movements
+    if (piece.name=="queen"){
+      return this.isLegalQueenMove(piece, targetPiece, startPosition, endPosition);
+    }
+    // Check king movements
+    if (piece.name=="king"){
+      return this.isLegalKingMove(piece, targetPiece, startPosition, endPosition);
+    }
     return false
   }
 
-  private isLegalRookMove(piece, targetPiece, startPosition, endPosition){
+  private isLegalKingMove(piece, targetPiece, startPosition, endPosition): boolean{
+    var delta_x = Math.abs(startPosition[0]-endPosition[0]);
+    var delta_y = Math.abs(startPosition[1]-endPosition[1]);
+    if (delta_x <= 1 && delta_y <= 1){
+      return true;
+    }
+    return false;
+  }
+
+  private isLegalQueenMove(piece, targetPiece, startPosition, endPosition): boolean{
+    var legalRookMove = this.isLegalRookMove(piece, targetPiece, startPosition, endPosition);
+    var legalBishopMove = this.isLegalBishopMove(piece, targetPiece, startPosition, endPosition);
+    if (legalRookMove || legalBishopMove){
+      return true;
+    }
+    return false;
+  }
+
+  private isLegalBishopMove(piece, targetPiece, startPosition, endPosition): boolean{
+    var delta_x = Math.abs(startPosition[0]-endPosition[0]);
+    var delta_y = Math.abs(startPosition[1]-endPosition[1]);
+    if (delta_x != delta_y){
+      return false;
+    }
+    var x_direction = endPosition[0] > startPosition[0] ? 1 : -1;
+    var y_direction = endPosition[1] > startPosition[1] ? 1 : -1;
+    var current_position = [
+      startPosition[0]+x_direction, 
+      startPosition[1]+y_direction
+    ];
+    var hasPiece = false;
+    while (
+      (current_position[0] != endPosition[0]) &&
+      (current_position[1] != endPosition[1])){
+      hasPiece = this.hasPieceByPosition(current_position);
+      current_position[0] += x_direction;
+      current_position[1] += y_direction;
+      if (hasPiece){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private isLegalKnightMove(piece, targetPiece, startPosition, endPosition): boolean{
+    // Check if move is a 3-1 move
+    var delta_x = Math.abs(startPosition[0]-endPosition[0]);
+    var delta_y = Math.abs(startPosition[1]-endPosition[1]);
+    if ((delta_x == 1 && delta_y == 2) || (delta_x == 2 && delta_y == 1)){
+      return true;
+    }
+    return false;
+  }
+
+  private isLegalRookMove(piece, targetPiece, startPosition, endPosition): boolean{
     if (startPosition[0]==endPosition[0]){
-      let counter = 0;
       var direction = endPosition[1] > startPosition[1] ? 1 : -1;
       if (direction == 1){
         let hasPiece = false;
@@ -211,9 +298,7 @@ export class ChessGamePageComponent implements OnInit {
       }
       return true;
     } 
-
     else if(startPosition[1]==endPosition[1]){
-      let counter = 0;
       var direction = endPosition[0] > startPosition[0] ? 1 : -1;
       if (direction == 1){
         let hasPiece = false;
@@ -234,13 +319,10 @@ export class ChessGamePageComponent implements OnInit {
       }
       return true;
     }
-
-    else {
-      return false;
-    }
+    return false;
   }
 
-  private isLegalPawnMove(piece, targetPiece, startPosition, endPosition){
+  private isLegalPawnMove(piece, targetPiece, startPosition, endPosition): boolean{
     var direction = (piece.colour == "dark") ? 1 : -1;
     // Check going in the same lane
     if (startPosition[0]==endPosition[0]){
